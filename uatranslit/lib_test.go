@@ -23,4 +23,8 @@ func TestReplaceUARunes(t *testing.T) {
 	assert.Equal([]rune("tsia yalynka"), ReplaceUARunes([]rune("ця ялинка")), "test detecting first position after space character")
 	assert.Equal([]rune("Baba-yaha"), ReplaceUARunes([]rune("Баба-яга")), "test detecting first position after non space character")
 	assert.Equal([]rune("Halia, Yana"), ReplaceUARunes([]rune("Галя, Яна")), "test rune with position")
+	assert.Equal([]rune("zghortaty"), ReplaceUARunes([]rune("згортати")), "test zgh sybols")
+	assert.Equal([]rune("miakym"), ReplaceUARunes([]rune("м’яким")), "remove apostroff")
+	assert.Equal([]rune("miakym"), ReplaceUARunes([]rune("м'яким")), "remove apostroff")
+	assert.Equal([]rune("znat"), ReplaceUARunes([]rune("знать")), "remove ь")
 }

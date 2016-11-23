@@ -91,7 +91,29 @@ func ReplaceUARune(uaRune rune, isFist bool) []rune {
 // if UA rune dosen't exist - return initial rune in a list
 func ReplaceUARunes(uaRunes []rune) (engRunes []rune) {
 	isFirst := true
+	previousZ := false
 	for _, rune := range uaRunes {
+		// test for "зг"
+		if previousZ && rune == 'г' {
+			engRunes = append(engRunes, 'g')
+		}
+		if rune == 'з' {
+			previousZ = true
+		} else {
+			previousZ = false
+		}
+
+		// remove ’ - U+2019 and apostrophe U+27 symbols
+		// Posible can remove U+27 simbols from text
+		if rune == '’' || rune == '\'' {
+			continue
+		}
+
+		//remove ь symbol
+		if rune == 'ь' {
+			continue
+		}
+
 		newRunes := ReplaceUARune(rune, isFirst)
 		engRunes = append(engRunes, newRunes...)
 		if newRunes[0] == rune {
